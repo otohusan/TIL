@@ -1,0 +1,19 @@
+LT会
+
+7月14日
+uniqueness: trueは、オブジェクトが保存される直前に、属性の値が一意（unique）であり重複していないことをチェックする。
+→ データベースに一意性を追加するわけではない。
+
+異なる2つのデータベース接続が使われていると、一意であるべきカラムに同じ値を持つレコードが2つ作成される可能性があります。これを避けるには、データベース側でそのカラムにuniqueインデックスを作成する必要があります。
+→ 具体的には、マイグレーションファイルに add_index :table_name, :column, unique: true や mongoだと index({ email: 1 }, { name: 'email_unique', unique: true,}) をモデルに追加する必要がある。
+
+参考資料
+https://railsguides.jp/active_record_validations.html#uniqueness
+
+
+KPT
+
+problem テストの書き方、要件が悪い
+
+
+
