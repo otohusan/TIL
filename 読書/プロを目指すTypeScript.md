@@ -64,3 +64,39 @@ type User = { name: string; age: number };
 type AnyObject = { [key: string]: number };
 const obj: AnyObject = { a: 1, b: 2, c: 3 };
 ```
+
+## 部分型関係
+
+以下の2つの条件を満たすと、SがTの部分型とみなせる
+1. Tが持つプロパティは全てSにも存在する
+2. SにおけるプロパティがTのプロパティの部分型であるか同じ型
+
+具体的には以下のようなものはHumanはAnimalの部分型と言える
+
+```ts
+type Animal = {
+    age: number;
+};
+
+type Human = {
+    age: number;
+    name: string;
+}
+```
+
+## 型引数
+以下のように型引数を持った型（ジェネリック型）を宣言できる
+```ts
+type User<T> = {
+    name: string;
+    child: T;
+}
+
+// 使用する場合は以下のように<>に型を渡す
+
+user: User<number> = {
+    name: "hoge",
+    child: 15
+}
+```
+
