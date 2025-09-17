@@ -131,3 +131,42 @@ function GenericFunc<T>(el: T): T[] {
 型引数は省略できて、明示しなかったら型推論が行われる。これによって使う側から見ると、好きな値で呼び出せば、良い感じの型の返り値を返してくれる関数として機能する。
 
 ### var はブロックスコープに属さない
+
+## 6
+
+## リテラル型の widening
+
+let で定義すると、リテラル型がプリミティブ型に変換される
+
+```ts
+let x = "hello"; // string（"hello"型ではなくなる）
+const y = "hello"; // "hello"（リテラル型）
+```
+
+オブジェクトリテラルの中は widening される
+
+```ts
+const obj = { value: "foo" }; // obj.value の型は string
+```
+
+明示的に型を書いたリテラル型は、let でも widening されない
+
+```ts
+let obj2: "foo" = "foo"; // これは "foo" 型になる
+```
+
+## lookup 型
+
+- 既に定義されている型情報を再利用したい時に使用する
+- 特にこのオブジェクトのこの値を引数に取りたい、と明示したい時に有効
+
+```ts
+type User = {
+  id: number;
+  name: string;
+};
+
+function greet(name: User["name"]) {
+  console.log(`こんにちは、${name}さん`);
+}
+```
