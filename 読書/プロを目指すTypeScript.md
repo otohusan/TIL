@@ -170,3 +170,29 @@ function greet(name: User["name"]) {
   console.log(`こんにちは、${name}さん`);
 }
 ```
+
+## keyof 型
+
+オブジェクト型からそのオブジェクトのプロパティ名の型を得る
+
+```ts
+type User = {
+  id: number;
+  name: string;
+  age: number;
+};
+
+// User型のプロパティ名だけを型として取得
+type UserKeys = keyof User; // "id" | "name" | "age"
+
+// 問題なし
+const key: UserKeys = "id";
+
+// エラーになる
+const hoge: UserKeys = "hoge";
+```
+
+["DOMContentLoaded", "page:load"].forEach(function(eventName) {
+document.removeEventListener(eventName, initializeSalesRoleSelects);
+document.addEventListener(eventName, initializeSalesRoleSelects);
+});
