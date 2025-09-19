@@ -191,8 +191,3 @@ const key: UserKeys = "id";
 // エラーになる
 const hoge: UserKeys = "hoge";
 ```
-
-["DOMContentLoaded", "page:load"].forEach(function(eventName) {
-document.removeEventListener(eventName, initializeSalesRoleSelects);
-document.addEventListener(eventName, initializeSalesRoleSelects);
-});
