@@ -191,3 +191,26 @@ const key: UserKeys = "id";
 // エラーになる
 const hoge: UserKeys = "hoge";
 ```
+
+## as 型アサーション
+
+- `式 as 型`というふうに書く
+- 「値」に対しては何も行わず、コンパイラが認識する「型」のみ変更する
+- 堅安全性を破壊する場合があるから、あまり使用すべきではない
+
+### 良くない例
+
+```ts
+function getFirstFive(strOrNum: string | number) {
+  // as を使ってコンパイラに string だと認識させる
+  const str = strOrNum as string;
+
+  // 文字列に存在する slice メソッドを呼び出す
+  return str.slice(0, 5);
+}
+
+// 実行時エラーが発生する
+getFirstFive(12345);
+```
+
+引数に number を受けることができるにも関わらず、as を使ってコンパイラを騙してしまったため、開発時に slice を使用する問題に気付けない
