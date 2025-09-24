@@ -281,3 +281,18 @@ if (typeof value === "string") {
 let anyValue: any = "hello";
 anyValue.toUpperCase();
 ```
+
+## 可変長タプル
+
+先頭に必ず値があり、後ろに任意の数の値が続く場合などに使う。
+
+```ts
+type Log = [string, ...number[]];
+const log1: Log = ["start", 1, 2, 3]; // OK
+const log2: Log = ["end"]; // OK
+const log3: Log = ["error", 100, 200]; // OK
+```
+
+## d.ts ファイル
+
+型定義ファイルとして扱われ、特定のモジュールに対する型定義を宣言できる
