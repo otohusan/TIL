@@ -219,5 +219,40 @@ getFirstFive(12345);
 
 ### 型推論に与える 4 つの効果
 
-- 配列リテラルの方推論を、配列型からタプル型に
--
+- 配列リテラルの型推論を、配列型からタプル型に
+
+```ts
+// string[]
+const foods1 = ["rice", "curry", "apple"];
+
+// readonly ["rice", "curry", "apple"]型
+const foods2 = ["rice", "curry", "apple"] as const;
+```
+
+- オブジェクト型のプロパティを readonly に
+
+```ts
+type User = {
+  readonly name: string;
+  readonly age: number;
+};
+
+const user: User = { name: "Taro", age: 20 };
+// user.name = "Jiro"; // エラー: readonlyなので変更不可
+```
+
+- リテラル型が widening しないように
+
+```ts
+const str: "hello" = "hello"; // 型: "hello"（string型に拡張されない）
+```
+
+- テンプレート文字列リテラルの型が string ではなくテンプレートリテラル型に
+
+```ts
+// string型
+const message = `Hello, ${name}!`;
+
+// "Hello, ${string}"型
+const constMessage = `Hello, ${name}!` as const;
+```
