@@ -256,3 +256,28 @@ const message = `Hello, ${name}!`;
 // "Hello, ${string}"型
 const constMessage = `Hello, ${name}!` as const;
 ```
+
+## unknown 型
+
+どんな値でも入れられるけど、コンパイラはできることが限られてると認識する。
+
+any と違って、直接プロパティアクセスや関数呼び出しができないから、ランタイムエラーのリスクが少ない
+
+```ts
+let value: unknown;
+value = 1;
+value = "hello";
+value = { a: 1 };
+
+// 直接プロパティアクセスはできない
+// value.toUpperCase(); // エラー
+
+// 型チェックすれば OK
+if (typeof value === "string") {
+  console.log(value.toUpperCase()); // OK
+}
+
+// any 型の場合は何でもできてしまう
+let anyValue: any = "hello";
+anyValue.toUpperCase();
+```
