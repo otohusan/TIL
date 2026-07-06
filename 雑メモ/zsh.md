@@ -22,3 +22,9 @@ FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # 不要なファイル検索を除外
 FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude node_modules'
+# Zellij との競合回避
+FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude node_modules'
+FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# fzf の Ctrl-T を解除して Ctrl-F に変更
+bindkey -r '^T'
+bindkey '^F' fzf-file-widget
