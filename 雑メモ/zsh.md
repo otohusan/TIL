@@ -16,8 +16,11 @@ eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 eval "$(fzf --zsh)"
-# ファイル検索用コマンドに fd を指定
-FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+# 検索用コマンドに fd を指定
+FZF_DEFAULT_COMMAND='
+  { fd --type d --hidden --follow --exclude .git --exclude node_modules;
+    fd --type f --hidden --follow --exclude .git --exclude node_modules; }
+'
 # Ctrl-T (デフォルトのファイル検索) にも fd を適用
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # 不要なファイル検索を除外
