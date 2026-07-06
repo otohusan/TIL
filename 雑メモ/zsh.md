@@ -16,6 +16,7 @@ eval "$(mise activate zsh)"
 eval "$(zoxide init zsh)"
 
 eval "$(fzf --zsh)"
+
 # 検索用コマンドに fd を指定
 FZF_DEFAULT_COMMAND='
   { fd --type d --hidden --follow --exclude .git --exclude node_modules;
@@ -23,11 +24,8 @@ FZF_DEFAULT_COMMAND='
 '
 # Ctrl-T (デフォルトのファイル検索) にも fd を適用
 FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# 不要なファイル検索を除外
-FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude node_modules'
+
 # Zellij との競合回避
-FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --exclude node_modules'
-FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # fzf の Ctrl-T を解除して Ctrl-F に変更
 bindkey -r '^T'
 bindkey '^F' fzf-file-widget
